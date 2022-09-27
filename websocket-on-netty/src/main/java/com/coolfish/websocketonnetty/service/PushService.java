@@ -17,12 +17,13 @@ public class PushService {
     /**
      * 推送给指定用户
      *
-     * @param userId
+     * @param channelId channelId as shortText
      * @param msg
      */
-    public void pushMsgToOne(String userId, String msg) {
+    public void pushMsgToOne(String channelId, String msg) {
         ConcurrentHashMap<String, Channel> userChannelMap = NettyConfig.getUserChannelMap();
-        Channel channel = userChannelMap.get(userId);
+        Channel channel = userChannelMap.get(channelId);
+
         channel.writeAndFlush(new TextWebSocketFrame(msg));
     }
 

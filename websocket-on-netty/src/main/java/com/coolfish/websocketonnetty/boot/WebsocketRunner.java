@@ -36,7 +36,7 @@ public class WebsocketRunner implements ApplicationRunner {
     NioEventLoopGroup workerGroup;
 
     @Autowired
-    public WebsocketRunner(InitChannelHandler initChannelHandler, @Qualifier("taskExecutor") TaskExecutor taskExecutor) {
+    public WebsocketRunner(InitChannelHandler initChannelHandler, @Qualifier(value = "taskExecutor") TaskExecutor taskExecutor) {
         this.initChannelHandler = initChannelHandler;
         this.taskExecutor = taskExecutor;
     }

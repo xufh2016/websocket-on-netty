@@ -19,7 +19,6 @@ public class RequestUriUtils {
      */
     public static Map<String, String> getParams(String uri) {
         Map<String, String> params = new HashMap<>(10);
-
         int idx = uri.indexOf("?");
         if (idx != -1) {
             String[] paramsArr = uri.substring(idx + 1).split("&");
@@ -67,12 +66,12 @@ public class RequestUriUtils {
         return uri.substring(0, idx);
     }
 
-    public static String getPathParamBasePath(String uri){
+    public static String getPathParamBasePath(String uri) {
         if (uri == null || uri.isEmpty()) {
             return null;
         }
         int index = uri.indexOf("ws");
-        if (index==-1){
+        if (index == -1) {
             return null;
         }
         return uri.substring(0, index);

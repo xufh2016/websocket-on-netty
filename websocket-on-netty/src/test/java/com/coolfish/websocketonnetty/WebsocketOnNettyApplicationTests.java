@@ -2,6 +2,8 @@ package com.coolfish.websocketonnetty;
 
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.POIXMLTextExtractor;
 import org.apache.poi.hwpf.extractor.WordExtractor;
@@ -15,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -149,5 +152,88 @@ class WebsocketOnNettyApplicationTests {
         }
         return resullt;
     }
+    
+    @Test
+    public void test001(){
+        DecimalFormat format = new DecimalFormat("#");
+        String  resistance1 = "25";
+        double resistance = Double.parseDouble(resistance1);
+        String s = format.format(resistance);
+        int res = new Double(Double.parseDouble(s)).intValue();
+        System.out.println("res = " + res);
+    }
+
+    @Test
+    public void test04(){
+        String json = "{\n" +
+                "    \"c\":[\n" +
+                "        {\n" +
+                "            \"version\":\"v1.0.0.1\",\n" +
+                "            \"procedureCode\":\"http://120.27.18.244:81/demo-code/c-v1.0-demo.doc\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+        JSONObject jsonObject = JSONUtil.parseObj(json);
+        System.out.println("jsonObject = " + jsonObject);
+        List<Object> c = (List<Object>) jsonObject.get("c");
+        c.forEach(item-> System.out.println("item = " + item));
+    }
+
+
+    @Test
+    public void testFile() throws IOException {
+        File file = new File("D:\\test\\test.doc");
+        file.createNewFile();
+    }
+
+
+
+    @Test
+    public void test22(){
+        ArrayList<Object> list = new ArrayList<>();
+        list.add("1");
+        list.add("aaa");
+        list.add("bbb");
+        list.add("cc");
+
+        list.forEach(item->{
+            System.out.println("item = " + item);
+        });
+        System.out.println("--------------------------------------------------------------------");
+        boolean cc = list.remove("cc");
+        System.out.println("cc = " + cc);
+        list.forEach(item->{
+            System.out.println("item1 = " + item);
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

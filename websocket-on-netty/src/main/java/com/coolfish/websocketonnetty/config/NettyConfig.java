@@ -39,4 +39,17 @@ public class NettyConfig {
     public static ConcurrentHashMap<String,Channel> getUserChannelMap(){
         return userChannelMap;
     }
+    public static void addChannel(Channel channel){
+        channelGroup.add(channel);
+        userChannelMap.put(channel.id().asShortText(),channel);
+    }
+
+    public static void removeChannel(Channel channel){
+        channelGroup.remove(channel);
+        userChannelMap.remove(channel.id().asShortText(),channel);
+    }
+
+    public static Channel findChannel(String channelId){
+        return channelGroup.find(userChannelMap.get(channelId).id());
+    }
 }
